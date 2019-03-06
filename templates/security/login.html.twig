@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+{% endblock %}
+{% block title %}
+    Snowtricks-Login   
+{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey }}
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <h2>Pour accéder a plus de fonctionnalités</h2>
+        <h1>Connectez vous !</h1>
+        <form action="{{ path('security_login') }}" method="post" id="join-us">
+            <h3 style='margin-left: 25%;margin-bottom: 5%;'>Nom d'utilisateur</h3>
+            <span>
+                <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+            </span>
+            <br/>
+            <h3 style='margin-left: 25%;margin-bottom: 5%;'>Mot de passe</h3>
+            <span>
+                <input type="password" id="password" name="_password"/>
+            </span>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            <p><a href="{{ path('request_resetting') }}">Mot de passe oublié</a></p> 
+            <div class="submit">
+                <button type="submit" value="Submit">Submit</button>
+            </div>
+            <br/>
+            <div id="pas_de_compte">
+                <p>Pas encore de compte ? <a href="{{ path('user_registration') }}">Inscrivez vous</a></p> 
+            </div>  
+        </form>
+    </div>
+
+    {# <div class="container">
+        <h2>c'est maintenant ou jamais</h2>
+        <h1>Rejoignez nous !</h1>
+
+        {{ form_start(form) }}
+        <div class="fields">
+            <h3>Nom d'utilisateur</h3>
+            <span>
+                {{ form_widget(form.username) }}
+                {{ form_errors(form.username) }}
+            </span>
+            <br/>
+            <h3>Mot de passe</h3>
+            <span>
+                {{ form_widget(form.password) }}
+                {{ form_errors(form.password) }}
+            </span>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            <br/>
+        </div>
+        <div class="submit">
+            <button type="submit" value="Submit">Submit</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div id="pas_de_compte">
+        <p>Pas encore de compte ? <a href="{{ path('user_registration') }}">Inscrivez vous</a></p> 
+    </div> 
+    #}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/edit.css') }}">
+    <style> 
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/collection.js') }}"></script>
+{% endblock %}
+{% block title %}
+    Snowtricks-{{ trick.title }}   
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <div id="show">
+        {% for image in trick.images|slice(0,1) %}
+            <div id="bannere" style='background-image:url("../../../images/{{image.name}}");'>
+                <h1>{{ form_row(form.title) }}</h1>
+            </div>
+        {% endfor %} 
+        <div id="show_2">
+
+            <div class="item-entry" data-aos="zoom-in" id="media" id="image" style="display:flex;" >
+                {% for image in trick.images %}
+                    <div>
+                        <div id="div-image" style='background-image:url("../../../images/{{image.name}}");'></div>
+                        <button type="button" class="delete-from-collection" data-id="trick_images_{{ loop.index0 }}">Supprimer</button>
+                    </div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <div>
+                        <iframe src="{{ video.urlIFrame }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen><p>null</p></iframe>
+                        <button type="button" class="delete-from-collection" data-id="trick_videos_{{ loop.index0 }}">Supprimer</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            {{ form_row(form.content) }}
+
+            {{ form_row(form.images) }}
+            {{ form_row(form.videos) }}
+
+            <a href="#" id="add_image" class="btn btn-default add-to-collection" data-list="#trick_images">Ajouter une image</a>
+
+            <a href="#" id="add_video" class="btn btn-default add-to-collection" data-list="#trick_videos">Ajouter une vidéo</a>
+            {{ include('trick/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            
+            <br/><br/><br/>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/show.css') }}">
+    <style>
+
+    </style>
+{% endblock %}
+{% block title %}
+    Snowtricks-{{ trick.title }}   
+{% endblock %}
+
+{% block body %}
+    <div id="show">
+        {% for image in trick.images|slice(0,1) %}
+            <div id="bannere" style='background-image:url("../../../public/images/{{image.name}}");'>
+                <h1>{{ trick.title }}</h1>
+            </div>
+        {% endfor %} 
+        <div id="show_2">
+
+            <div class="item-entry" data-aos="zoom-in" id="media" id="image" style="display:flex;">
+                {% for image in trick.images|slice(1,100000) %}
+                    <div id="div-image" style='background-image:url("../../../public/images/{{image.name}}");'></div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <iframe src="{{ video.urlIFrame }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen><p>null</p></iframe>
+                    {% endfor %}
+            </div>
+
+            <p id="content">{{ trick.content }}</p>
+            <p><br/>publié le {{ trick.createAt ? trick.createAt|date('Y-m-d H:i:s') : '' }}<br/>
+
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div id="editdelete">
+                    <a href="{{ path('trick_edit', {'id': trick.id}) }}"><img src="../../../public/css/images/edit.png" alt="canard"/></a>
+                    <a href="{{ path('trick_delete',{'id': trick.id})~"?_token="~csrf_token("delete"~trick.id) }}"><img src="../../../public/css/images/delete.png" alt="canard"/></a>
+                </div>
+            {% endif %}
+            <div id="comments">
+                <h1>Commentaires :</h1><br/>
+
+                {% for comment in trick.comments %}
+                    <div id="allcomments">
+                        <h2>{{ comment.title }}</h2>
+                        <p>{{ comment.content }}<p><br/>
+                    </div>
+                {% else %}
+                    <p>Pas de commentaires</p> 
+                {% endfor %}  
+            </div>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div id="center" class="text-center">
+                    <br/><h2>Laissez un commentaire</h2><br/>
+                    <div class="container">
+                        {{ form_start(form) }}
+                        <div class="fields">
+                            <h3 style="margin-bottom:15px;" >Titre</h3>
+                            <span>
+                                {{ form_widget(form.title) }}
+                                {{ form_errors(form.title) }}
+                            </span>
+                            <br/><br/>
+                            <h3 style="margin-bottom:15px;">Contenu</h3>
+                            <span>
+                                {{ form_widget(form.content) }}
+                                {{ form_errors(form.content) }}
+                            </span>
+                            <br/><br/>    
+                            <div class="submit">
+                                <button type="submit" value="Submit">Envoyez</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <br/><br/><br/><br/>
+                            </div>    
+                            {{ form_end(form) }}
+                        </div>
+                    </div>  
+                {% endif %}
+                <br/><br/><br/><br/>
+            </div>
+        </div>
+
+    {% endblock %}

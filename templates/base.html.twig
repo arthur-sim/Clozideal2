@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Snowtricks{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        {% block stylesheet %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="{{ path('index') }}">Snowtricks </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('security_logout') }}">Se déconnecter</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="{{ path('user_registration') }}">S'inscrire</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+    </div>
+    {% block body %}{% endblock %}
+    <!-- Footer -->
+    <footer class="page-footer font-small blue ">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="{{ path('index') }}"> Snowtricks.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+    {% block javascripts %}
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/bootstrap.min.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

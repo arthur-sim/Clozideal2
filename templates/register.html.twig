@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+{% endblock %}
+{% block title %}
+    Snowtricks-inscription  
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <h2>c'est maintenant ou jamais</h2>
+        <h1>Rejoignez nous !</h1>
+
+        {{ form_start(form) }}
+        <div class="fields">
+            <h3>Nom d'utilisateur</h3>
+            <span>
+                {{ form_widget(form.username) }}
+                {{ form_errors(form.username) }}
+            </span>
+            <br/>
+            <h3>Email</h3>
+            <span>
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </span>
+            <br/>
+            <h3>Mot de passe</h3>
+            <span>
+                {{ form_widget(form.password.first) }}
+                {{ form_errors(form.password.first) }}
+            </span>
+            <br/>
+            <h3>Répetez le mot de passe</h3>
+            <span>
+                {{ form_widget(form.password.second) }}
+                {{ form_errors(form.password.second) }}
+            </span>
+        </div>
+        <div class="submit">
+            <button type="submit" value="Submit">Submit</button>
+        </div>
+        {{ form_end(form) }}
+        {#
+          <form action="" id="join-us">
+            <div class="fields">
+                <h3>Nom d'utilisateur</h3>
+            <span>
+                <input type="text" id="form_username" name="form[username]" />
+            </span>
+            <br/>
+                <h3>Email</h3>
+            <span>
+               <input type="email" id="form_email" name="form[email]" />
+            </span>
+            <br/>
+                <h3>Mot de passe</h3>
+            <span>
+               <input type="password" id="form_password_first" name="form[password_first]" />
+            </span>
+            <br/>
+                <h3>Répetez le mot de passe</h3>
+            <span>
+               <input type="password" id="form_password_second" name="form[password_second]" />
+            </span>
+            </div>
+            <div class="submit">
+              <button type="submit" value="Submit">Submit</button>
+            </div>
+          </form>
+        #}
+    </div>
+
+
+{% endblock %}

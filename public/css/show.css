@@ -1,0 +1,109 @@
+#show{
+    width:80%;
+    margin: auto;
+    background-color: white;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    box-shadow: 1px 1px 12px #777;
+}
+#bannere{
+    width: 100%;
+    height: 60vh;
+}
+#bannere h1{
+    padding-top:27vh; /* centrage vertical */
+    color: white;
+    font-size: 4em;
+}
+#show_2{
+    width: 90%;
+    margin: auto;
+}
+#div-image{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 300px;
+    height: 160px;
+}
+iframe{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+#show #content{
+    margin-top: 2%;
+}
+#show p #date #content{
+    text-align: center;
+}
+#comments{
+    width: 85%;
+    margin: auto;
+    margin-top: 2%;
+}
+#editdelete{
+    display: flex;
+    width: 30%;
+}
+#editdelete a{
+    margin-left:3%;
+}
+#editdelete img{
+    width:75%;
+}
+
+label{
+    display:none;
+}
+.submit button{ 
+    background:#9bc8dd ! important;
+    color:#fff;
+    position:relative;
+    left:9px;
+    top:25px; 
+    width:120px;
+    height:40px;
+    cursor:pointer;
+    border-radius:22px;
+    border:1px solid #9bc8dd;
+}
+.submit button{ 
+    background:#9bc8dd ! important;
+    color:#fff;
+    position:relative;
+    left:9px;
+    top:25px; 
+    width:120px;
+    height:40px;
+    cursor:pointer;
+    border-radius:22px;
+    border:1px solid #9bc8dd;
+}
+input{
+    height:34px;
+    border-radius:22px;
+    width:290px;
+    padding:0 18px; 
+}
+#allcomments h2{
+    margin-left: 3%;
+    
+}
+#allcomments p{
+    margin-left:7%
+}
+@media only screen and (max-width:1480px) {
+    #show{
+        width:100%;
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+    #bannere h1{
+        padding-top:27vh; /* centrage vertical */
+        color: white;
+        font-size: 1.8em;
+    }    
+
+}

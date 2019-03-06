@@ -1,0 +1,14 @@
+body{
+    height: 0;
+}
+#body-request{
+    text-align: center;
+    margin: auto;
+    margin-top: 35vh;
+}
+footer{
+    position: absolute; 
+    bottom: 0;
+    left: 0; 
+    right: 0
+}

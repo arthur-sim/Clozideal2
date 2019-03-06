@@ -1,0 +1,12 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="bannere_error" style="color:white;">
+        <div>
+            <p>Erreur 404</p>
+            <p>La page que vous cherchez n'existe pas</p>
+            <a href="{{ path('index') }}">retour a l'accueil</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/request.css') }}">
+{% endblock %}
+{% block title %}Tricks index{% endblock %}
+
+{% block body %}
+    <div id="body-request">
+        <div>
+            <h1>Renouvellement du mot de passe</h1>
+            <p>Entrez votre nouveau mot de passe.</p>
+        </div>
+
+        {{form_start(form)}}
+            {{form_row(form.password.first)}}
+            {{form_row(form.password.second)}}
+            <button class=""  type="submit">Envoyer</button>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+/* register.html */
+    body{
+      text-align:center;
+    }
+/* register.html */
+    .container{
+      position:relative;
+      top:100px;
+    }
+    .container h1, .container span{
+      font-family:"Pt Sans", helvetica, sans-serif;
+    }
+    .container h1{
+      text-align:center;
+      font-weight:100;
+      font-size:2em; 
+      margin-bottom:10px;
+    }
+    .container h2{
+      font-family:"droid serif";
+      font-style:italic;
+      color:#9bc8dd; 
+      text-align:center;
+      font-size:1.2em;
+    }
+    .container h3{
+      font-family:"droid serif";
+      font-style:italic;
+      color:#9bc8dd; 
+      text-align:left;
+      font-size:1.2em;
+      margin-left: 10%;
+    }
+    form{
+      margin-top:25px;
+      display:inline-block;
+    }
+    .container span{
+        margin-bottom:8px; 
+        display:inline-block;
+    }
+    .container span:last-child{
+       margin-bottom:-11px;
+    }
+    input{
+      border:none;
+      outline:none;
+      display:inline-block;
+      height:34px;
+      vertical-align:middle;
+      position:relative;
+      bottom:14px;
+      right:9px;
+      border-radius:22px;
+      width:220px;
+      box-sizing:border-box;
+      padding:0 18px; 
+    }
+    .submit button{ 
+      background:#9bc8dd ! important;
+      color:#fff;
+      position:relative;
+      left:9px;
+      top:25px; 
+      width:120px;
+      height:40px;
+      cursor:pointer;
+      border-radius:22px;
+      border:1px solid #9bc8dd;
+    }
+/* end register.html */
+label{
+    display:none;
+}
+footer{
+    display: none;
+}

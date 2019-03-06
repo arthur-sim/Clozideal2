@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheet %}
+    <style>
+        .trick-hidden {
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+
+    {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google
+       mais si vous l'avez en local, changez simplement l'adresse. #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <div class="nav justify-content-left" id="bannere">
+        <h1>Le snowboard a portée de main</h1>
+    </div>
+
+    <div class="row entries-wrap wide">
+        <div class="entries" >
+            {% for trick in tricks %}
+                <article class="col-block {% if loop.index > 8 %}trick-hidden{% endif %}" >
+
+                    <div class="item-entry" data-aos="zoom-in">
+                        <div class="item-entry__thumb">
+                            {% for image in trick.images|slice(0,1) %}
+                                <img src="../images/{{image.name}}" height="250vh" alt="">
+                            {% endfor %}
+                        </div>
+
+                        <div class="item-entry__text">    
+
+                            <h1 class="item-entry__title"><a href="/Snowtricks/public/index.php/trick/{{ trick.id }}">{{ trick.title }}</a></h1>
+
+                            <div class="item-entry__date">
+                                <p>{{ trick.createAt ? trick.createAt|date('Y-m-d H:i:s') : '' }}</p>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <div id="editdelete">
+                                        <a href="{{ path('trick_edit', {'id': trick.id}) }}"><img src="../../public/css/images/edit.png" alt="canard" style='width:7%'/></a>
+                                        <a href="{{ path('trick_delete',{'id': trick.id}) }}"><img src="../../public/css/images/delete.png" alt="canard" style='width:7%'/></a>
+                                    </div>
+                                {% endif %} 
+                            </div>                          
+                        </div>
+                    </div> <!-- item-entry -->
+                </article> <!-- end article -->
+            {% else %}
+                <p colspan="5" style='margin-left: 50px;'>Pas de tricks trouvé.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="buttonloadmore">
+        <button id="add-more" class="btn btn-default" >Voir plus</button>   
+    </div>
+    <div id="newtricks">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div>
+                <h1>Vous ne trouvez pas le tricks que vous cherchez</h1>
+                <p><a href="{{ path('trick_new') }}">Créez le !</a></p> 
+            </div>
+        {% else %}
+            <div>
+                <h1>Connectez vous pour pouvoir créer un tricks</h1>
+                <p><a href="{{ path('security_login') }}">Connexion</a></p> 
+            </div>    
+        {% endif %}
+    </div>
+    <script>
+        var $addMoreList = document.querySelectorAll('#add-more');
+
+        for ($addMore of $addMoreList) {
+            $addMore.addEventListener('click', function () {
+                displayNext5Tricks();
+            });
+        }
+
+        checkDisplayAddMore();
+
+        function displayNext5Tricks() {
+            var $tricksHidden = document.querySelectorAll('.trick-hidden');
+
+            var i = 0;
+            for ($trickHidden of $tricksHidden) {
+                if (i >= 4) {
+                    continue;
+                }
+
+                $trickHidden.classList.remove('trick-hidden');
+
+                i++;
+            }
+
+            checkDisplayAddMore();
+        }
+
+        function checkDisplayAddMore() {
+            if (document.querySelectorAll('.trick-hidden').length === 0) {
+                for ($addMore of $addMoreList) {
+                    $addMore.classList.add('hidden');
+                }
+            }
+        }
+    </script>
+    <br/><br/><br/><br/><br/>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/request.css') }}">
+{% endblock %}
+{% block title %}Tricks index{% endblock %}
+
+{% block body %}
+    <div id="body-request">
+        <div>
+            <h1>Mot de passe oublié ?</h1>
+            <p>Demandez à réinitialiser votre mot de passe en renseignant votre mail.</p>
+            <p>Vous recevrez un lien sur votre boite mail pour modifier votre mot de passe.</p>
+        </div>
+
+        {{form_start(form)}}
+            {{form_row(form.email)}}
+            <button  type="submit">Envoyer</button>
+        {{form_end(form)}}
+    </div>
+{% endblock %}
